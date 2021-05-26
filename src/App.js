@@ -1,10 +1,19 @@
 import React from 'react'
+import DashBoardView from './views/DashBoardView'
+import { CssBaseline } from '@material-ui/core'
+import AppState from './store/App/AppState'
+import Observer from './views/Observer'
 
 function App() {
   return (
-    <div>
-      <h1>Hola funciona</h1>
-    </div>
+    <>
+      <AppState>
+        <Observer>
+          <CssBaseline />
+          <DashBoardView />
+        </Observer>
+      </AppState>
+    </>
   )
 }
 

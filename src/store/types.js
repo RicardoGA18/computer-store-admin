@@ -1,0 +1,6 @@
+export const SET_ERROR = 'SET_ERROR'
+export const SET_ADMIN = 'SET_ADMIN'
+
+// Local Storage
+export const ACCESS_TOKEN = 'COMPUTER_STORE_ADMIN_TOKEN'
+export const COMPUTER_STORE_ADMIN = 'COMPUTER_STORE_ADMIN'
