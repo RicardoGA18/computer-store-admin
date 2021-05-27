@@ -3,12 +3,16 @@ import {
   Container,
   Typography,
   Grid,
+  Button,
 } from '@material-ui/core'
-import useStyles from '../components/styles'
-import AccountForm from '../components/AccountForm'
+import useStyles from '../styles'
+import { useParams , useHistory } from 'react-router-dom'
+import UpdateForm from './UpdateForm'
 
-function Account() {
+const UpdateClient = () => {
+  const { id } = useParams()
   const classes = useStyles()
+  const history = useHistory()
 
   return (
     <Container maxWidth={false} classes={{ root: classes.fullContainer }}>
@@ -17,11 +21,20 @@ function Account() {
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Grid container justify="space-between" alignItems="center">
-                <Typography variant="h5">Mi Cuenta</Typography>
+                <Typography variant="h5">Cliente: {id}</Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    history.push('/clientes')
+                  }}
+                >
+                  Volver
+                </Button>
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <AccountForm />
+              <UpdateForm />
             </Grid>
           </Grid>
         </Grid>
@@ -30,4 +43,4 @@ function Account() {
   )
 }
 
-export default Account
+export default UpdateClient

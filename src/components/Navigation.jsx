@@ -1,4 +1,5 @@
-import React, {useState , useEffect} from 'react'
+import React, {useState , useContext} from 'react'
+import AppContext from '../store/App/AppContext'
 import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import MenuItem from './MenuItem'
@@ -18,12 +19,15 @@ import { ChevronLeft , Menu } from '@material-ui/icons'
 import logo from '../assets/logo.png'
 import logoFull from '../assets/logoFull.png'
 import useStyles from './styles'
+import { useLocation } from 'react-router-dom'
 
 function Navigation() {
+  const { signOut } = useContext(AppContext)
   const theme = useTheme()
   const matches = useMediaQuery(theme.breakpoints.down('xs'))
   const classes = useStyles()
   const [open,setOpen] = useState(true)
+  const location = useLocation()
 
   const toggleNavigation = () => {
     setOpen(!open)
@@ -33,6 +37,10 @@ function Navigation() {
     if(matches){
       setOpen(false)
     }
+  }
+
+  if(location.pathname === '/iniciar-sesion'){
+    return <></>
   }
 
   return (
@@ -96,7 +104,7 @@ function Navigation() {
             label="Cerrar sesión"
             Icon={ExitToAppIcon}
             path="/sign-out"
-            onClick={closeNavigation}
+            onClick={signOut}
           />
         </List>
       </Drawer>

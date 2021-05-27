@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
     position: 'relative',
     height: '100vh',
-    
   },
   menuItemIcon: {
     width: '100%'
@@ -90,6 +89,10 @@ const useStyles = makeStyles((theme) => ({
   },
   iconSpacer: {
     marginRight: 10,
+  },
+  paddingContainer: {
+    padding: 30,
+    borderRadius: 20
   }
 }))
 

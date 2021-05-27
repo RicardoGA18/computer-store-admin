@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext , useEffect , useState } from 'react'
 import { 
   Container,
   Typography,
@@ -12,13 +12,49 @@ import {
   TableBody,
   TableRow,
   IconButton,
+  TablePagination,
 } from '@material-ui/core'
 import { lightBlue, red  } from '@material-ui/core/colors'
 import { Delete , Edit } from '@material-ui/icons'
 import useStyles from '../components/styles'
+import AppContext from '../store/App/AppContext'
 
 function Categories() {
+  const { categories , getCategories } = useContext(AppContext)
   const classes = useStyles()
+  const [page,setPage] = useState(0)
+
+  useEffect(() => {
+    getCategories()
+  },[])
+  
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage)
+  }
+
+  const setPaginationLabel = ({from,to,count}) => {
+    return `${from}-${to} de ${count}`
+  }
+
+  const setCategories = () => {
+    const secureCategories = JSON.parse(JSON.stringify(categories))
+    const newCategories = secureCategories.slice(page * 5, (page * 5) + 5)
+    return newCategories.map(category => (
+      <TableRow key={category._id}>
+        <TableCell>
+          <Typography variant="overline">{category.name}</Typography>
+        </TableCell>
+        <TableCell align="right">
+          <IconButton className={classes.iconSpacer}>
+            <Edit style={{ color: lightBlue[700] }}/>
+          </IconButton>
+          <IconButton>
+            <Delete style={{color: red[700]}}/>
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    ))
+  }
 
   return (
     <Container maxWidth={false} classes={{ root: classes.fullContainer }}>
@@ -33,29 +69,26 @@ function Categories() {
             </Grid>
             <Grid item xs={12}>
               <TableContainer component={Paper}>
-                <Typography>
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell><Typography variant="subtitle1">Nombre</Typography></TableCell>
-                        <TableCell align="right"></TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>Laptops</TableCell>
-                        <TableCell align="right">
-                          <IconButton className={classes.iconSpacer}>
-                            <Edit style={{ color: lightBlue[700] }}/>
-                          </IconButton>
-                          <IconButton>
-                            <Delete style={{color: red[700]}}/>
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </Typography>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell><Typography variant="h6">Nombre</Typography></TableCell>
+                      <TableCell align="right"></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {setCategories()}
+                  </TableBody>
+                </Table>
+                <TablePagination
+                  rowsPerPage={5}
+                  rowsPerPageOptions={[5]}
+                  page={page}
+                  component="div"
+                  count={categories.length}
+                  onChangePage={handleChangePage}
+                  labelDisplayedRows={setPaginationLabel}
+                />
               </TableContainer>
             </Grid>
           </Grid>

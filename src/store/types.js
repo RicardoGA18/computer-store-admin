@@ -1,5 +1,11 @@
 export const SET_ERROR = 'SET_ERROR'
 export const SET_ADMIN = 'SET_ADMIN'
+export const SET_CATEGORIES = 'SET_CATEGORIES'
+export const SET_PRODUCTS = 'SET_PRODUCTS'
+export const SET_CLIENTS = 'SET_CLIENTS'
+export const SET_CLIENT = 'SET_CLIENT'
+export const ADD_CLIENT = 'ADD_CLIENT'
+export const DELETE_CLIENT = 'DELETE_CLIENT'
 
 // Local Storage
 export const ACCESS_TOKEN = 'COMPUTER_STORE_ADMIN_TOKEN'

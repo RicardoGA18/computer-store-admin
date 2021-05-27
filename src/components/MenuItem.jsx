@@ -21,7 +21,7 @@ function MenuItem({ label , Icon , path , onClick}) {
   },[location])
 
   return (
-    <ListItem onClick={onClick} component={Link} to={path} button className={clsx(classes.menuItem, active && classes.menuItemActive)}>
+    <ListItem onClick={onClick} component={path === '/sign-out' ? 'li' : Link} to={path === '/sign-out' ? null : path} button className={clsx(classes.menuItem, active && classes.menuItemActive)}>
       <ListItemIcon>
         <Icon style={{ fontSize: 25 , color: active ? '#1DDECE' : '#454545' }} className={classes.menuItemIcon} />
       </ListItemIcon>
