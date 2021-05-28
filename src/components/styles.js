@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
+import { red } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   appRoot: {
@@ -93,6 +94,16 @@ const useStyles = makeStyles((theme) => ({
   paddingContainer: {
     padding: 30,
     borderRadius: 20
+  },
+  isRed: {
+    color: red[500]
+  },
+  paddingSlides: {
+    padding: '20px 0',
+    borderRadius: 20
+  },
+  fullHeight: {
+    height: '100%',
   }
 }))
 

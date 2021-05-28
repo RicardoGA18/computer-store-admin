@@ -19,7 +19,7 @@ const addClient = async client => {
       const formData = new FormData()
       formData.append('image',client.file)
       const { success:successAvatar , content:contentAvatar , message:messageAvatar } = await apiFetchAuth(`/clients/uploadAvatar/${content._id}`,formData,'PUT') 
-      if(success){
+      if(successAvatar){
         return contentAvatar
       }
       throw new Error(messageAvatar)

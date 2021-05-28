@@ -20,12 +20,14 @@ import { Delete , Edit } from '@material-ui/icons'
 import useStyles from '../components/styles'
 import AppContext from '../store/App/AppContext'
 import swal from 'sweetalert2'
+import { useSnackbar } from 'notistack'
 
 function Clients() {
   const { clients , getClients , deleteClient } = useContext(AppContext)
   const classes = useStyles()
   const [page,setPage] = useState(0)
   const history = useHistory()
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     getClients()
@@ -41,7 +43,7 @@ function Clients() {
 
   const handleDelete = async (clientId) => {
     const respond = await swal.fire({
-      title: 'Seguro',
+      title: '¿Seguro?',
       icon: 'warning',
       text: 'Perderás la información del cliente',
       showCancelButton: true,
@@ -51,7 +53,10 @@ function Clients() {
       cancelButtonColor: lightBlue[700],
     })
     if(respond.isConfirmed){
-      deleteClient(clientId)
+      await deleteClient(clientId)
+      enqueueSnackbar('Cliente eliminado', {
+        variant: 'success'
+      })
     }
   }
 

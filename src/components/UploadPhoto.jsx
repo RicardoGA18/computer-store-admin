@@ -1,11 +1,11 @@
-import React , { useContext } from 'react'
+import React , { useState } from 'react'
 import {
   Typography,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useDropzone } from 'react-dropzone'
 import { grey } from '@material-ui/core/colors'
-import AppContext from '../store/App/AppContext'
+import { red } from '@material-ui/core/colors'
 
 const useStyles = makeStyles({
   imgContainer:{
@@ -64,27 +64,31 @@ const useStyles = makeStyles({
   imageDropzone:{
     width: '100%',
     maxHeight: '100%'
+  },
+  errorText: {
+    color: red[500]
   }
 })
 
 const UploadPhoto = ({width,height,file,name,uploadedFile,setUplaodedFile,disabled}) => {
-  const { setError } = useContext(AppContext)
   const classes = useStyles({width , height})
+  const [errorFile,setErrorFile] = useState('')
 
   const { getRootProps , getInputProps } = useDropzone({
     onDropAccepted: files => {
       if(files[0].size > 5242880){
-        setError('La imagen supera los 5 MB')
+        setErrorFile('La imagen supera los 5 MB')
         setUplaodedFile(null)
         return
       }
       setUplaodedFile(files[0])
+      setErrorFile('')
     },
     onDropRejected: (files) => {
       if(files.length > 1){
-        setError('Solo se permite una sola imagen')
+        setErrorFile('Solo se permite una sola imagen')
       }else{
-        setError('Tipo de archivo inválido')
+        setErrorFile('Tipo de archivo inválido')
       }
       setUplaodedFile(null)
     },
@@ -124,6 +128,7 @@ const UploadPhoto = ({width,height,file,name,uploadedFile,setUplaodedFile,disabl
           {setPhoto()}
         </div>
       </div>
+      {errorFile ? <Typography variant="caption" align="center" component="p" classes={{ root: classes.errorText }}>* {errorFile}</Typography> : <></>}
       <Typography variant="caption" align="center" component="p">Archivos admitidos: .jpeg, .png, .svg, .gif, .webp</Typography>
       <Typography variant="caption" align="center" component="p">Tamaño máximo de archivo: 5 MB</Typography>
     </>

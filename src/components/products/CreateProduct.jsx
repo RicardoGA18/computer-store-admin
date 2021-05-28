@@ -9,7 +9,7 @@ import useStyles from '../styles'
 import { useHistory } from 'react-router-dom'
 import CreateForm from './CreateForm'
 
-const CreateClient = () => {
+const CreateProduct = () => {
   const classes = useStyles()
   const history = useHistory() 
 
@@ -20,12 +20,12 @@ const CreateClient = () => {
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Grid container justify="space-between" alignItems="center">
-                <Typography variant="h5">Añadir Cliente</Typography>
+                <Typography variant="h5">Añadir Producto</Typography>
                 <Button
                   variant="contained" 
                   color="primary"
                   onClick={() => {
-                    history.push('/clientes')
+                    history.push('/productos')
                   }}
                 >
                   Volver
@@ -42,4 +42,4 @@ const CreateClient = () => {
   )
 }
 
-export default CreateClient
+export default CreateProduct

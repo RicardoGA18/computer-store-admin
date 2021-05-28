@@ -10,10 +10,12 @@ import UploadPhoto from './UploadPhoto'
 import AppContext from '../store/App/AppContext'
 import * as yup from 'yup'
 import { Form , FormikProvider, useFormik } from 'formik'
+import { useSnackbar } from 'notistack'
 
 const AccountForm = () => {
   const classes = useStyles()
   const { admin , getAdministrator , setAdministrator } = useContext(AppContext)
+  const { enqueueSnackbar } = useSnackbar()
 
   useEffect(() => {
     getAdministrator(admin._id)
@@ -42,6 +44,9 @@ const AccountForm = () => {
     onSubmit: async (values , { setSubmitting }) => {
       await setAdministrator({ ...values , _id: admin._id })
       setSubmitting(false)
+      enqueueSnackbar('Cuenta actualizada',{
+        variant: 'success'
+      })
     }
   })
 

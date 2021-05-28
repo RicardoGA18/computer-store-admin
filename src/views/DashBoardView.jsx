@@ -15,6 +15,10 @@ import useStyles from '../components/styles'
 
 import UpdateClient from '../components/clients/UpdateClient'
 import CreateClient from '../components/clients/CreateClient'
+import UpdateCategory from '../components/categories/UpdateCategory'
+import CreateCategory from '../components/categories/CreateCategory'
+import UpdateProduct from '../components/products/UpdateProduct'
+import CreateProduct from '../components/products/CreateProduct'
 
 function DashBoardView() {
   const classes = useStyles()
@@ -31,8 +35,12 @@ function DashBoardView() {
             <PrivateRoute exact path="/tienda" component={Store}/>
             {/* Products */}
             <PrivateRoute exact path="/productos" component={Products}/>
+            <PrivateRoute exact path="/productos/editar/:id" component={UpdateProduct}/>
+            <PrivateRoute exact path="/productos/crear" component={CreateProduct}/>
             {/* Categories */}
             <PrivateRoute exact path="/categorias" component={Categories}/>
+            <PrivateRoute exact path="/categorias/editar/:id" component={UpdateCategory}/>
+            <PrivateRoute exact path="/categorias/crear" component={CreateCategory}/>
             {/* Clients */}
             <PrivateRoute exact path="/clientes" component={Clients}/>
             <PrivateRoute exact path="/clientes/editar/:id" component={UpdateClient}/>

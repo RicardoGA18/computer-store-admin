@@ -11,11 +11,13 @@ import AppContext from '../../store/App/AppContext'
 import * as yup from 'yup'
 import { Form , FormikProvider , useFormik } from 'formik'
 import { useHistory } from 'react-router-dom'
+import { useSnackbar } from 'notistack'
 
 const CreateForm = () => {
   const classes = useStyles()
   const { createClient } = useContext(AppContext)
   const history = useHistory()
+  const { enqueueSnackbar } = useSnackbar()
 
   const onlyLettersRegex = /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ'`'\-]+$/
 
@@ -45,6 +47,7 @@ const CreateForm = () => {
       const respond = await createClient(values)
       setSubmitting(false)
       if(respond){
+        enqueueSnackbar('Cliente añadido',{variant: 'success'})
         history.push('/clientes')
       }
     }

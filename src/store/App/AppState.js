@@ -16,9 +16,16 @@ import fetchClient from '../utils/fetchClient'
 import updateClient from '../utils/updateClient'
 import addClient from '../utils/addClient'
 import removeClient from '../utils/removeClient'
-
+import fetchCategory from '../utils/fetchCategory'
+import updateCategory from '../utils/updateCategory'
+import addCategory from '../utils/addCategory'
+import removeCategory from '../utils/removeCategory'
+import fetchProduct from '../utils/fetchProduct'
+import updateProduct from '../utils/updateProduct'
+import addProduct from '../utils/addProduct'
+import removeProduct from '../utils/removeProduct'
 // Types
-import { DELETE_CLIENT , ADD_CLIENT , SET_ERROR , SET_ADMIN , SET_CATEGORIES , SET_PRODUCTS , SET_CLIENTS , SET_CLIENT } from '../types'
+import { DELETE_PRODUCT , ADD_PRODUCT , SET_PRODUCT , DELETE_CATEGORY , ADD_CATEGORY , SET_CATEGORY , DELETE_CLIENT , ADD_CLIENT , SET_ERROR , SET_ADMIN , SET_CATEGORIES , SET_PRODUCTS , SET_CLIENTS , SET_CLIENT } from '../types'
 
 const AppState = props => {
   const INITIAL_STATE = {
@@ -128,6 +135,68 @@ const AppState = props => {
     }
   }
 
+  const getCategory = async id => {
+    try {
+      const category = await fetchCategory(id)
+      dispatch({
+        type: SET_CATEGORY,
+        payload: category
+      })
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+    }
+  }
+
+  const setCategory = async category => {
+    try {
+      const newCategory = await updateCategory(category)
+      dispatch({
+        type: SET_CATEGORY,
+        payload: newCategory
+      })
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+    }
+  }
+
+  const createCategory = async category => {
+    try {
+      const newCategory = await addCategory(category)
+      dispatch({
+        type: ADD_CATEGORY,
+        payload: newCategory
+      })
+      return true
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+      return null
+    }
+  }
+
+  const deleteCategory = async id => {
+    try {
+      const respond = await removeCategory(id)
+      dispatch({
+        type: DELETE_CATEGORY,
+        payload: respond
+      })
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+    }
+  }
+
   // Products
   const getProducts = async () => {
     try {
@@ -135,6 +204,70 @@ const AppState = props => {
       dispatch({
         type: SET_PRODUCTS,
         payload: products
+      })
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+    }
+  }
+
+  const getProduct = async (id) => {
+    try {
+      const product = await fetchProduct(id)
+      dispatch({
+        type: SET_PRODUCT,
+        payload: product,
+      })
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+    }
+  }
+
+  const setProduct = async (product) => {
+    try {
+      const newProduct = await updateProduct(product)
+      dispatch({
+        type: SET_PRODUCT,
+        payload: newProduct
+      })
+      return true
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+      return null
+    }
+  }
+
+  const createProduct = async product => {
+    try {
+      const newProduct = await addProduct(product)
+      dispatch({
+        type: ADD_PRODUCT,
+        payload: newProduct
+      })
+      return true
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+      return null
+    }
+  }
+
+  const deleteProduct = async id => {
+    try {
+      const respond = await removeProduct(id)
+      dispatch({
+        type: DELETE_PRODUCT,
+        payload: respond
       })
     } catch (error) {
       dispatch({
@@ -242,6 +375,14 @@ const AppState = props => {
       setClient,
       createClient,
       deleteClient,
+      getCategory,
+      setCategory,
+      createCategory,
+      deleteCategory,
+      getProduct,
+      setProduct,
+      createProduct,
+      deleteProduct,
     }}>
       {props.children}
     </AppContext.Provider>

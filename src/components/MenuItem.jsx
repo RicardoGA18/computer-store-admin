@@ -17,7 +17,11 @@ function MenuItem({ label , Icon , path , onClick}) {
       setActive(true)
       return
     }
-    setActive(location.pathname === path)
+    if(location.pathname !== '/' && path === '/'){
+      setActive(false)
+      return
+    }
+    setActive(location.pathname.includes(path))
   },[location])
 
   return (
