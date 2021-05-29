@@ -15,18 +15,16 @@ import {
   IconButton,
   TablePagination,
 } from '@material-ui/core'
-import { lightBlue, red  } from '@material-ui/core/colors'
+import { lightBlue  } from '@material-ui/core/colors'
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import useStyles from '../components/styles'
 import AppContext from '../store/App/AppContext'
 import swal from 'sweetalert2'
-import { useSnackbar } from 'notistack'
 
 const Sales = () => {
   const classes = useStyles()
   const history = useHistory()
   const [page,setPage] = useState(0)
-  const { enqueueSnackbar } = useSnackbar()
   const { getPurchases , purchases ,  clients , getClients } = useContext(AppContext)
 
   useEffect(() => {
@@ -68,7 +66,7 @@ const Sales = () => {
             <Typography variant="overline">{purchase.totalAmount}</Typography>
           </TableCell>
           <TableCell align="right">
-            <IconButton >
+            <IconButton component={Link} to={`/ventas/${purchase._id}`}>
               <VisibilityIcon style={{ color: lightBlue[700] }}/>
             </IconButton>
           </TableCell>

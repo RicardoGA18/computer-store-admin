@@ -19,6 +19,7 @@ import UpdateCategory from '../components/categories/UpdateCategory'
 import CreateCategory from '../components/categories/CreateCategory'
 import UpdateProduct from '../components/products/UpdateProduct'
 import CreateProduct from '../components/products/CreateProduct'
+import Purchase from '../components/sales/Purchase'
 
 function DashBoardView() {
   const classes = useStyles()
@@ -34,6 +35,7 @@ function DashBoardView() {
             <PrivateRoute exact path="/cuenta" component={Account}/>
             {/* Sales */}
             <PrivateRoute exact path="/ventas" component={Sales}/>
+            <PrivateRoute exact path="/ventas/:id" component={Purchase}/>
             {/* Products */}
             <PrivateRoute exact path="/productos" component={Products}/>
             <PrivateRoute exact path="/productos/editar/:id" component={UpdateProduct}/>

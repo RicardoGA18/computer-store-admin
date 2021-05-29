@@ -25,8 +25,9 @@ import updateProduct from '../utils/updateProduct'
 import addProduct from '../utils/addProduct'
 import removeProduct from '../utils/removeProduct'
 import fetchPurchases from '../utils/fetchPurchases'
+import fetchPurchase from '../utils/fetchPurchase'
 // Types
-import { SET_PURCHASES , DELETE_PRODUCT , ADD_PRODUCT , SET_PRODUCT , DELETE_CATEGORY , ADD_CATEGORY , SET_CATEGORY , DELETE_CLIENT , ADD_CLIENT , SET_ERROR , SET_ADMIN , SET_CATEGORIES , SET_PRODUCTS , SET_CLIENTS , SET_CLIENT } from '../types'
+import { SET_PURCHASE , SET_PURCHASES , DELETE_PRODUCT , ADD_PRODUCT , SET_PRODUCT , DELETE_CATEGORY , ADD_CATEGORY , SET_CATEGORY , DELETE_CLIENT , ADD_CLIENT , SET_ERROR , SET_ADMIN , SET_CATEGORIES , SET_PRODUCTS , SET_CLIENTS , SET_CLIENT } from '../types'
 
 const AppState = props => {
   const INITIAL_STATE = {
@@ -39,11 +40,26 @@ const AppState = props => {
     admin: getAdmin(),
     error: null,
     purchases: [],
+    purchase: null
   }
 
   const [state,dispatch] = useReducer(AppReducer,INITIAL_STATE)
   
   // Purchases
+  const getPurchase = async (id) => {
+    try {
+      const purchase = await fetchPurchase(id)
+      dispatch({
+        type: SET_PURCHASE,
+        payload: purchase
+      })
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error.message
+      })
+    }
+  }
 
   const getPurchases = async () => {
     try {
@@ -382,6 +398,7 @@ const AppState = props => {
       admin: state.admin,
       error: state.error,
       purchases: state.purchases,
+      purchase: state.purchase,
       signIn,
       setError,
       setAdmin,
@@ -404,6 +421,7 @@ const AppState = props => {
       createProduct,
       deleteProduct,
       getPurchases,
+      getPurchase,
     }}>
       {props.children}
     </AppContext.Provider>

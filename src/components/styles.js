@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { red } from '@material-ui/core/colors'
+import { red , grey } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   appRoot: {
@@ -104,6 +104,15 @@ const useStyles = makeStyles((theme) => ({
   },
   fullHeight: {
     height: '100%',
+  },
+  avatar: {
+    background: grey[300],
+    width: 60,
+    height: 60,
+    marginRight: 20,
+  },
+  noBold:{
+    fontWeight: 300
   }
 }))
 

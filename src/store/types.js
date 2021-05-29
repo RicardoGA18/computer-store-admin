@@ -17,6 +17,7 @@ export const ADD_CATEGORY = 'ADD_CATEGORY'
 export const DELETE_CATEGORY = 'DELETE_CATEGORY'
 // Purchases
 export const SET_PURCHASES = 'SET_PURCHASES'
+export const SET_PURCHASE = 'SET_PURCHASE'
 // Local Storage
 export const ACCESS_TOKEN = 'COMPUTER_STORE_ADMIN_TOKEN'
 export const COMPUTER_STORE_ADMIN = 'COMPUTER_STORE_ADMIN'

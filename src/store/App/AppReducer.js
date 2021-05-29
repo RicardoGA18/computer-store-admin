@@ -1,4 +1,4 @@
-import { SET_PURCHASES , DELETE_PRODUCT , ADD_PRODUCT , SET_PRODUCT , DELETE_CATEGORY , ADD_CATEGORY , SET_CATEGORY , ADD_CLIENT , SET_ERROR , SET_ADMIN , SET_CATEGORIES , SET_PRODUCTS , SET_CLIENTS , SET_CLIENT, DELETE_CLIENT } from '../types'
+import { SET_PURCHASE , SET_PURCHASES , DELETE_PRODUCT , ADD_PRODUCT , SET_PRODUCT , DELETE_CATEGORY , ADD_CATEGORY , SET_CATEGORY , ADD_CLIENT , SET_ERROR , SET_ADMIN , SET_CATEGORIES , SET_PRODUCTS , SET_CLIENTS , SET_CLIENT, DELETE_CLIENT } from '../types'
 
 export default (state,action) => {
   const {payload,type} = action
@@ -27,6 +27,11 @@ export default (state,action) => {
       return {
         ...state,
         purchases: payload
+      }
+    case SET_PURCHASE:
+      return {
+        ...state,
+        purchase: payload
       }
     case SET_CLIENTS:
       return {
