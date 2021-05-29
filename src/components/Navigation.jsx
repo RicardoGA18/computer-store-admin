@@ -7,12 +7,12 @@ import clsx from 'clsx'
 import { AppBar , Toolbar , useTheme , useMediaQuery, Typography } from '@material-ui/core'
 
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import StoreIcon from '@material-ui/icons/Store';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import CategoryIcon from '@material-ui/icons/Category';
 import ComputerIcon from '@material-ui/icons/Computer';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import GroupIcon from '@material-ui/icons/Group';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 
 import IconButton from '@material-ui/core/IconButton'
 import { ChevronLeft , Menu } from '@material-ui/icons'
@@ -70,9 +70,9 @@ function Navigation() {
             onClick={closeNavigation}
           />
           <MenuItem
-            label="Tienda"
-            Icon={StoreIcon}
-            path="/tienda"
+            label="Ventas"
+            Icon={MonetizationOnIcon}
+            path="/ventas"
             onClick={closeNavigation}
           />
           <MenuItem

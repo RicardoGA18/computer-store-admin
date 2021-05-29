@@ -6,7 +6,7 @@ import LogRoute from '../routes/log.routes'
 
 import General from '../pages/General'
 import Account from '../pages/Account'
-import Store from '../pages/Store'
+import Sales from '../pages/Sales'
 import Products from '../pages/Products'
 import Categories from '../pages/Categories'
 import Clients from '../pages/Clients'
@@ -32,7 +32,8 @@ function DashBoardView() {
           <Switch>
             <PrivateRoute exact path="/" component={General}/>
             <PrivateRoute exact path="/cuenta" component={Account}/>
-            <PrivateRoute exact path="/tienda" component={Store}/>
+            {/* Sales */}
+            <PrivateRoute exact path="/ventas" component={Sales}/>
             {/* Products */}
             <PrivateRoute exact path="/productos" component={Products}/>
             <PrivateRoute exact path="/productos/editar/:id" component={UpdateProduct}/>
